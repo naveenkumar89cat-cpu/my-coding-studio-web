@@ -1,0 +1,265 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0f16"><title>My Coding Studio</title><style>
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:#0b0f16;color:#e6edf3;font:13px Inter,system-ui,sans-serif;overflow:hidden}button,input,select{font:inherit}.top{height:52px;background:#111722;border-bottom:1px solid #263041;display:flex;align-items:center;gap:10px;padding:7px 12px}.brand{font-weight:800;letter-spacing:.5px;margin-right:8px}.modes{display:flex;background:#090d13;border:1px solid #263041;border-radius:8px;padding:2px}.modes button,.tool{background:transparent;color:#9da7b3;border:0;border-radius:6px;padding:7px 10px;cursor:pointer}.modes .activeMode,.tool:hover{background:#202a39;color:#fff}.grow{flex:1}.primary{background:#238636!important;color:#fff!important}.status{height:28px;padding:6px 12px;background:#0e141e;color:#8b949e;border-bottom:1px solid #202938}.ok{color:#3fb950}.bad{color:#f85149}.warn{color:#d29922}.workspace{height:calc(100vh - 80px);display:grid;grid-template-columns:210px minmax(0,1fr);}.explorer{background:#0e141e;border-right:1px solid #263041;overflow:auto}.panelTitle{padding:10px 12px;font-size:11px;font-weight:800;color:#8b949e;letter-spacing:1px}.file{padding:7px 12px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.file:hover{background:#182130}.codeArea{min-width:0;display:flex;flex-direction:column}.tabs{height:35px;display:flex;overflow:auto;background:#111722;border-bottom:1px solid #263041}.tab{padding:9px 12px;border-right:1px solid #263041;white-space:nowrap;cursor:pointer}.active{background:#0b0f16}.split{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr)}.editorWrap{min-width:0;min-height:0}.editorWrap textarea{width:100%;height:100%;resize:none;background:#0b0f16;color:#e6edf3;border:0;padding:14px;font:14px ui-monospace,SFMono-Regular,Consolas,monospace;outline:none;line-height:1.55}.preview{border-left:1px solid #263041;background:#fff;min-width:0}.previewHead{height:34px;background:#111722;color:#9da7b3;padding:8px 10px;border-bottom:1px solid #263041}.preview iframe{width:100%;height:calc(100% - 34px);border:0}.bottom{height:155px;background:#06090e;border-top:1px solid #263041;display:flex;flex-direction:column}.bottomTabs{height:32px;display:flex;align-items:center;gap:4px;padding:3px 8px;color:#8b949e}.bottomTabs button{background:transparent;color:#9da7b3;border:0;padding:5px 8px}.termLog{flex:1;overflow:auto;padding:7px 10px;white-space:pre-wrap;font:12px ui-monospace,monospace}.termLine{display:flex;align-items:center;padding:5px 10px;border-top:1px solid #182130;font:13px ui-monospace,monospace}.termLine input{flex:1;background:transparent;border:0;outline:0;color:#fff;font:inherit}.docs{padding:24px;overflow:auto;background:#0b0f16}.docGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:850px}.docCard{background:#111722;border:1px solid #263041;border-radius:10px;padding:18px;color:#e6edf3;text-align:left;cursor:pointer}.docCard b{display:block;margin-bottom:6px}.modal{position:fixed;inset:8%;background:#111722;border:1px solid #344158;border-radius:10px;padding:14px;overflow:auto;display:none;z-index:10;box-shadow:0 20px 70px #000}.modal button,.modal input,.modal select{background:#202938;color:#e6edf3;border:1px solid #344158;border-radius:6px;padding:8px}.result{padding:7px;border-bottom:1px solid #30363d;white-space:pre-wrap}.wide{width:65%}pre{white-space:pre-wrap}.badge{font-size:11px;color:#8b949e}.mobileKeys{display:none}.mobileKeys button{background:#182130;color:#d7dee7;border:1px solid #263041;border-radius:5px;padding:6px 9px}
+@media(max-width:760px){.brand{font-size:11px}.top{gap:4px;padding:6px}.tool{padding:6px;font-size:11px}.workspace{grid-template-columns:105px minmax(0,1fr)}.split{grid-template-columns:minmax(0,1fr)}.preview{position:absolute;left:105px;right:0;top:80px;bottom:155px;z-index:3}.bottom{height:150px}.mobileKeys{display:flex;gap:4px;overflow:auto;padding:4px 8px;background:#0e141e}.wide{width:100%}.modal{inset:2%}}
+
+/* ===== V6.1 PROFESSIONAL MOBILE ===== */
+@media(max-width:760px){
+  .brand{display:none}
+  .top{
+    height:52px;
+    gap:3px;
+    padding:5px;
+    overflow-x:auto;
+    white-space:nowrap
+  }
+  .modes{flex:none}
+  .tool{padding:7px 8px;font-size:11px}
+  .status{height:28px;padding:6px 8px}
+
+  .workspace{
+    height:calc(100vh - 80px);
+    display:block;
+    position:relative
+  }
+
+  /* Editor gets full phone width */
+  .explorer{
+    display:none;
+    position:absolute;
+    z-index:20;
+    left:0;
+    top:0;
+    bottom:0;
+    width:min(82vw,300px);
+    border-right:1px solid #344158;
+    box-shadow:12px 0 35px #000b
+  }
+  .explorer.mobileOpen{display:block}
+
+  .codeArea{
+    width:100%;
+    height:100%;
+    min-width:0
+  }
+
+  .split{
+    display:block;
+    position:relative;
+    height:100%
+  }
+
+  .editorWrap{
+    width:100%;
+    height:100%
+  }
+
+  .editorWrap textarea{
+    font-size:14px;
+    padding:12px;
+    width:100%;
+    height:100%
+  }
+
+  /* Viewer only when requested */
+  .preview{
+    display:none;
+    position:absolute;
+    z-index:18;
+    inset:0;
+    border:0
+  }
+  .preview.mobileOpen{display:block}
+
+  /* Terminal hidden until opened */
+  .bottom{
+    display:none;
+    position:absolute;
+    z-index:25;
+    left:0;
+    right:0;
+    bottom:0;
+    height:min(48vh,330px);
+    box-shadow:0 -12px 35px #000b
+  }
+  .bottom.mobileOpen{display:flex}
+
+  .mobileKeys{
+    display:flex;
+    gap:4px;
+    overflow-x:auto;
+    padding:5px 8px;
+    background:#0e141e
+  }
+
+  .docs{
+    height:100%;
+    padding:16px;
+    overflow:auto
+  }
+
+  .docGrid{
+    grid-template-columns:1fr 1fr;
+    gap:8px
+  }
+
+  .docCard{padding:14px 10px}
+  .wide{width:100%}
+  .modal{inset:2%}
+}
+
+/* Desktop keeps professional 3-panel layout */
+@media(min-width:761px){
+  .explorer{display:block!important}
+  .preview{display:block}
+}
+
+</style></head><body><div class="top"><div class="brand">MY CODING STUDIO</div><div class="modes"><button id="codeMode" class="activeMode" onclick="setMode('code')">CODE</button><button id="docsMode" onclick="setMode('documents')">DOCUMENTS</button></div><span class="badge" id="ctx">CODE</span><div class="grow"></div><button class="tool" onclick="save()">Save</button><button class="tool primary" onclick="runCurrent()">▶ Run</button><button class="tool" onclick="openAI()">AI</button><button class="tool" onclick="voiceReady()">🎤</button><button class="tool" id="viewerToggle" onclick="togglePreview()">Hide Viewer</button><button class="tool" id="androidBuild" onclick="buildAPK()" hidden>Build APK</button><button class="tool" onclick="systemView()">System</button><button class="tool" onclick="moreMenu()">⋮ More</button><span class="badge" id="cloud">Local ready</span></div>
+<div class="status" id="status">Starting…</div><div class="workspace"><aside class="explorer"><div class="panelTitle">FILES</div><div id="files"></div><div style="padding:8px"><button class="tool" onclick="newFile()">＋ File</button></div></aside><main class="codeArea"><section id="codePane" class="codeArea" style="flex:1;min-height:0"><div class="tabs" id="tabs"></div><div class="split"><div class="editorWrap"><textarea id="editor" spellcheck="false" placeholder="Type your code here…"></textarea></div><aside class="preview" id="previewPane"><div class="previewHead">LIVE VIEWER</div><iframe id="previewFrame" sandbox="allow-scripts allow-forms allow-modals"></iframe></aside></div></section><section id="documentsPane" class="docs" hidden><h2>Documents</h2><p>Create or open document files. Manual editing stays primary; AI is optional.</p><div class="docGrid"><button class="docCard" onclick="docNew('word')"><b>Word / Markdown</b>Write documents</button><button class="docCard" onclick="docNew('excel')"><b>Excel / CSV</b>Create workbook data</button><button class="docCard" onclick="docNew('slides')"><b>PowerPoint / Slides</b>Create slide source</button><button class="docCard" onclick="docNew('pdf')"><b>PDF</b>Prepare PDF content</button><button class="docCard" onclick="docNew('text')"><b>TXT</b>Plain text</button><button class="docCard" onclick="docNew('vba')"><b>VBA</b>Edit .bas source</button></div></section><section class="bottom" id="terminalPanel"><div class="bottomTabs"><b>TERMINAL</b><button onclick="clearOutput()">Output</button><span class="grow"></span><button onclick="toggleTerminal()">×</button></div><pre class="termLog" id="terminalLog">My Coding Studio Terminal — allowlisted cloud commands</pre><div class="termLine"><span>$&nbsp;</span><input id="termInput" autocomplete="off" spellcheck="false" placeholder="type command and press Enter"></div><div class="mobileKeys"><button onclick="termInput.value+='Ctrl+'">Ctrl</button><button onclick="termInput.value+='	'">Tab</button><button onclick="termInput.value=''">Esc</button><button onclick="termInput.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowUp'}))">↑</button><button onclick="termInput.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowDown'}))">↓</button></div></section></main></div>
+<div class="modal" id="modal"><button onclick="closeModal()">Close</button><h3 id="mt"></h3><div id="controls"></div><div id="results"></div></div><div id="output" hidden></div>
+<script src="https://accounts.google.com/gsi/client" async defer></script><script>
+const $=id=>document.getElementById(id); const DB='mcs-web-strong-v1'; const GOOGLE_CLIENT_ID='835846341570-vmclh0hkvv2t3i6r8isb63qrtmqlchat.apps.googleusercontent.com'; let files={},tabs={},current=null,token=null;
+function msg(s,c='ok'){$('status').textContent=s;$('status').className='status '+c} function out(s){$('output').textContent=String(s??'')} function clearOutput(){out('')} function modal(t){$('mt').textContent=t;$('controls').innerHTML='';$('results').innerHTML='';$('modal').style.display='block'} function closeModal(){$('modal').style.display='none'}
+function load(){try{files=JSON.parse(localStorage.getItem(DB+'.files')||'{}')}catch{files={}} if(!Object.keys(files).length){files={'README.md':'# My Coding Studio\n\nWeb Strong E2E ready.','index.html':'<!doctype html><h1>Hello Coding Studio</h1>','main.js':'console.log("Hello from My Coding Studio")'}} refresh();msg('Workspace ready')}
+function persist(){localStorage.setItem(DB+'.files',JSON.stringify(files))} function refresh(){$('files').innerHTML='';Object.keys(files).sort().forEach(p=>{let d=document.createElement('div');d.className='file';d.textContent=p;d.onclick=()=>openFile(p);$('files').appendChild(d)});renderTabs()}
+function openFile(p){if(current&&tabs[current])tabs[current].text=$('editor').value;if(!tabs[p])tabs[p]={text:files[p]??'',orig:files[p]??''};current=p;$('editor').value=tabs[p].text;renderTabs();msg('Opened '+p)}
+function renderTabs(){$('tabs').innerHTML='';Object.keys(tabs).forEach(p=>{let d=document.createElement('div');d.className='tab '+(p===current?'active':'');d.textContent=(tabs[p].text!==tabs[p].orig?'● ':'')+p;d.onclick=()=>openFile(p);$('tabs').appendChild(d)})}
+$('editor').addEventListener('input',()=>{if(current){tabs[current].text=$('editor').value;renderTabs()}});$('editor').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();save()}if(e.key==='Tab'){e.preventDefault();e.target.setRangeText('  ',e.target.selectionStart,e.target.selectionEnd,'end')}})
+function save(){if(!current)return msg('No file open','bad');files[current]=$('editor').value;tabs[current]={text:files[current],orig:files[current]};persist();renderTabs();msg('Saved '+current)} function newFile(){let p=prompt('New file path','main.txt');if(!p)return;if(p.includes('..')||p.startsWith('/'))return msg('Unsafe path blocked','bad');if(files[p]!=null&&!confirm('Replace file?'))return;files[p]='';persist();refresh();openFile(p)}
+function quickOpen(){let q=(prompt('Quick Open search','')||'').toLowerCase();let x=Object.keys(files).find(p=>p.toLowerCase().includes(q));if(x)openFile(x);else msg('No matching file','warn')} function findText(){if(!current)return msg('Open file first','bad');let q=prompt('Find text');if(!q)return;let i=$('editor').value.indexOf(q,$('editor').selectionEnd);if(i<0)i=$('editor').value.indexOf(q);if(i<0)return msg('Not found','warn');$('editor').focus();$('editor').setSelectionRange(i,i+q.length)}
+function projectSearch(){let q=prompt('Project search');if(!q)return;modal('Project Search');let out=[];for(const[p,c]of Object.entries(files))c.split('\n').forEach((l,i)=>{if(l.includes(q))out.push(`${p}:${i+1}  ${l}`)});$('results').textContent=out.join('\n')||'No results'}
+function snapshot(){let n='snapshot-'+new Date().toISOString();localStorage.setItem(DB+'.snap.'+n,JSON.stringify(files));msg('Snapshot created')} function restore(){let ks=Object.keys(localStorage).filter(k=>k.startsWith(DB+'.snap.')).sort().reverse();if(!ks.length)return msg('No snapshots','warn');let n=prompt('Snapshot',ks[0].slice((DB+'.snap.').length));if(!n)return;let v=localStorage.getItem(DB+'.snap.'+n);if(!v)return msg('Snapshot not found','bad');files=JSON.parse(v);tabs={};current=null;$('editor').value='';persist();refresh();msg('Snapshot restored')}
+function exportProject(){saveIfOpen();let blob=new Blob([JSON.stringify({format:'MyCodingStudioProjectV1',files},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MyCodingStudioProject.json';a.click();URL.revokeObjectURL(a.href);msg('Project exported')}
+function importProject(el){let f=el.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.files||typeof x.files!=='object')throw Error('Invalid project');files=x.files;persist();tabs={};current=null;$('editor').value='';refresh();msg('Project imported')}catch(e){msg(e.message,'bad')}};r.readAsText(f);el.value=''} function saveIfOpen(){if(current){files[current]=$('editor').value;persist()}}
+async function runCurrent(){saveIfOpen();if(!current)return msg('Open a file first','bad');out('Running '+current+'…');if(current.endsWith('.html')){let w=open();w.document.write(files[current]);w.document.close();out('HTML preview opened in a new tab.');return msg('HTML preview opened')}if(current.endsWith('.js')){let logs=[];try{new Function('console',files[current])({log:(...a)=>logs.push(a.join(' ')),error:(...a)=>logs.push(a.join(' ')),warn:(...a)=>logs.push(a.join(' '))});out(logs.join('\n')||'PASS');msg('JavaScript finished')}catch(e){out('ERROR: '+e);msg('JavaScript error','bad')}return}if(current.endsWith('.py'))return runPythonBrowser();return cloudRun()}
+let pyWorker=null,pySeq=0,pyPending=new Map();
+function getPythonWorker(){if(pyWorker)return pyWorker;pyWorker=new Worker('./python-worker.mjs',{type:'module'});pyWorker.onmessage=e=>{let p=pyPending.get(e.data.id);if(!p)return;pyPending.delete(e.data.id);p(e.data)};pyWorker.onerror=e=>{out('Python runtime error: '+(e.message||e.type));msg('Python runtime failed','bad')};return pyWorker}
+async function runPythonBrowser(){let id=++pySeq,source=files[current];out('Loading Python browser runtime…\nFirst run needs internet and may take a little longer.');msg('Python loading…','warn');try{let w=getPythonWorker(),result=await new Promise((resolve,reject)=>{let timer=setTimeout(()=>{pyPending.delete(id);reject(Error('Python run timed out'))},60000);pyPending.set(id,d=>{clearTimeout(timer);resolve(d)});w.postMessage({id,python:source})});if(result.error){out((result.stdout?result.stdout+'\n':'')+'ERROR: '+result.error);msg('Python error','bad')}else{out(result.stdout||String(result.result??'')||'(no output)');msg('Python finished')}}catch(e){out('ERROR: '+e.message);msg('Python runtime failed','bad')}}
+async function cloudRun(){let u=localStorage.getItem(DB+'.runner')||'';if(!u){out('Cloud Runner is not connected yet.\nOpen Settings and add the runner endpoint.');return msg('Cloud Runner URL not configured','warn')}try{let r=await fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({files,current,source:files[current]})});let raw=await r.text(),x;try{x=JSON.parse(raw)}catch{x={output:raw}};let text=x.output??x.stdout??x.result??x.message??JSON.stringify(x,null,2);if(x.stderr)text+=(text?'\n':'')+x.stderr;if(x.compile_output)text+=(text?'\n':'')+x.compile_output;out(text||'(no output)');msg(r.ok?'Cloud run finished':'Cloud run failed',r.ok?'ok':'bad')}catch(e){out('Connection error: '+e);msg('Cloud runner connection failed','bad')}}
+async function runnerRequest(payload){let u=localStorage.getItem(DB+'.runner')||'';if(!u)throw Error('Cloud Runner URL not configured');let r=await fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});let raw=await r.text(),x;try{x=JSON.parse(raw)}catch{x={output:raw}};if(!r.ok)throw Error(x.error||x.output||raw||('HTTP '+r.status));return x}
+function terminal(){modal('Terminal');$('controls').innerHTML='<select id="termcmd"><option>python3 --version</option><option>node --version</option><option>gcc --version</option><option>g++ --version</option><option>java -version</option><option>kotlinc -version</option><option>rustc --version</option><option>cargo --version</option><option>git --version</option></select> <button id="termrun">Run</button>';$('termrun').onclick=async()=>{saveIfOpen();$('results').textContent='Running…';try{let x=await runnerRequest({action:'command',command:$('termcmd').value,files});$('results').textContent=x.output||'(no output)';msg('Terminal command finished')}catch(e){$('results').textContent='ERROR: '+e.message;msg('Terminal command failed','bad')}}}
+function gitPanel(){modal('Git');$('controls').innerHTML='<select id="gitcmd"><option>status</option><option>init</option><option>diff</option><option>branch</option><option>log --oneline -10</option></select> <button id="gitrun">Run</button>';$('gitrun').onclick=async()=>{saveIfOpen();$('results').textContent='Running…';try{let x=await runnerRequest({action:'git',command:$('gitcmd').value,files});$('results').textContent=x.output||'(no output)';msg('Git finished')}catch(e){$('results').textContent='ERROR: '+e.message;msg('Git failed','bad')}}}
+function newAndroidApp(){let app={
+'settings.gradle':`pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal() } }\ndependencyResolutionManagement { repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS); repositories { google(); mavenCentral() } }\nrootProject.name='MyCodingStudioApp'\ninclude ':app'`,
+'build.gradle':`plugins { id 'com.android.application' version '8.7.3' apply false }`,
+'app/build.gradle':`plugins { id 'com.android.application' }\n\nandroid {\n    namespace 'com.mycodingstudio.app'\n    compileSdk 35\n    defaultConfig {\n        applicationId 'com.mycodingstudio.app'\n        minSdk 23\n        targetSdk 35\n        versionCode 1\n        versionName '1.0'\n    }\n}`,
+'app/src/main/AndroidManifest.xml':`<manifest xmlns:android="http://schemas.android.com/apk/res/android"><application android:theme="@style/AppTheme" android:label="My Coding Studio App"><activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity></application></manifest>`,
+'app/src/main/java/com/mycodingstudio/app/MainActivity.java':`package com.mycodingstudio.app;\n\nimport android.app.Activity;\nimport android.os.Bundle;\nimport android.widget.TextView;\n\npublic class MainActivity extends Activity {\n  @Override public void onCreate(Bundle b) {\n    super.onCreate(b);\n    TextView v = new TextView(this);\n    v.setText("Hello from My Coding Studio");\n    v.setTextSize(24);\n    v.setPadding(32,64,32,32);\n    setContentView(v);\n  }\n}`,
+'app/src/main/res/values/styles.xml':`<resources><style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar"><item name="android:fontFamily">sans</item><item name="android:colorAccent">#6200EE</item></style></resources>`};
+for(const[k,v]of Object.entries(app))files[k]=v;persist();refresh();openFile('app/src/main/java/com/mycodingstudio/app/MainActivity.java');msg('Android app created');out('Android starter project ready. Tap Build APK.')}
+async function buildAPK(){saveIfOpen();out('Android build starting…');msg('APK build running…','warn');try{let x=await runnerRequest({action:'android-build',files,current});out(x.output||'(no output)');if(x.apk_base64){let bin=atob(x.apk_base64),a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);let blob=new Blob([a],{type:'application/vnd.android.package-archive'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=x.apk_name||'MyCodingStudio-debug.apk';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);msg('APK built and downloaded')}else msg('APK build finished','warn')}catch(e){out('ERROR: '+e.message);msg('APK build unavailable','bad')}}
+async function runnerDiagnostics(){let commands=['python3 --version','node --version','gcc --version','g++ --version','java -version','kotlinc -version','rustc --version','cargo --version','git --version'],rows=[];for(const c of commands){try{let x=await runnerRequest({action:'command',command:c,files});rows.push('PASS ✓  '+c+'  '+String(x.output||'').split('\n')[0])}catch(e){rows.push('FAIL ✗  '+c+'  '+e.message)}}return rows}
+function openAI(){modal('Coding AI');$('controls').innerHTML='<textarea id="aip" style="height:100px" placeholder="Example: Create calculator in current project"></textarea><button id="aisend">Send to AI</button>';$('aisend').onclick=aiSend}
+async function aiSend(){saveIfOpen();let p=$('aip').value.trim();if(!p)return;let u=localStorage.getItem(DB+'.ai')||'/api/ai';$('results').textContent='AI working…';try{let r=await fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({prompt:p,files,current})});let x=await r.json();if(!r.ok)throw Error(x.error||'AI request failed');if(x.files&&typeof x.files==='object'){for(const[k,v]of Object.entries(x.files)){if(k.includes('..')||k.startsWith('/'))continue;files[k]=String(v)}persist();refresh();if(current&&files[current]!=null){tabs[current]={text:files[current],orig:files[current]};$('editor').value=files[current]} }$('results').textContent=x.message||'AI changes applied';msg('AI changes applied')}catch(e){$('results').textContent=String(e);msg('AI unavailable','bad')}}
+function settings(){modal('Settings');let cid=localStorage.getItem(DB+'.gcid')||GOOGLE_CLIENT_ID,ai=localStorage.getItem(DB+'.ai')||'/api/ai',run=localStorage.getItem(DB+'.runner')||'';$('controls').innerHTML=`<div>Google OAuth Client ID</div><input class="wide" id="gcid" value="${esc(cid)}"><div>AI endpoint</div><input class="wide" id="aiurl" value="${esc(ai)}"><div>Cloud Runner endpoint</div><input class="wide" id="runurl" value="${esc(run)}"><br><button id="setsave">Save Settings</button>`;$('setsave').onclick=()=>{localStorage.setItem(DB+'.gcid',$('gcid').value.trim());localStorage.setItem(DB+'.ai',$('aiurl').value.trim());localStorage.setItem(DB+'.runner',$('runurl').value.trim());msg('Settings saved');closeModal()}}
+function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function driveConnect(){let id=localStorage.getItem(DB+'.gcid')||GOOGLE_CLIENT_ID;if(!id)return msg('Set Google OAuth Client ID in Settings','warn');if(!window.google?.accounts?.oauth2)return msg('Google sign-in library still loading','warn');let client=google.accounts.oauth2.initTokenClient({client_id:id,scope:'https://www.googleapis.com/auth/drive.file',callback:r=>{if(r.error)return msg('Google Drive auth failed','bad');token=r.access_token;$('cloud').textContent='Google Drive connected';msg('Google Drive connected')}});client.requestAccessToken({prompt:''})}
+async function findDriveProject(){let q=encodeURIComponent("name='MyCodingStudioProject.json' and trashed=false");let r=await fetch('https://www.googleapis.com/drive/v3/files?q='+q+'&orderBy=modifiedTime%20desc&pageSize=10&fields=files(id,name,modifiedTime)',{headers:{Authorization:'Bearer '+token}});let x=await r.json();if(!r.ok)throw Error(x.error?.message||'Drive search failed');return x.files?.[0]||null}
+async function driveSave(){saveIfOpen();if(!token)return msg('Connect Google Drive first','warn');let body=JSON.stringify({format:'MyCodingStudioProjectV1',files});try{let existing=await findDriveProject(),r;if(existing){r=await fetch('https://www.googleapis.com/upload/drive/v3/files/'+encodeURIComponent(existing.id)+'?uploadType=media&fields=id,modifiedTime',{method:'PATCH',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body})}else{let meta={name:'MyCodingStudioProject.json',mimeType:'application/json'};let boundary='mcs_'+Date.now(),payload=`--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify(meta)}\r\n--${boundary}\r\nContent-Type: application/json\r\n\r\n${body}\r\n--${boundary}--`;r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,modifiedTime',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'multipart/related; boundary='+boundary},body:payload})}let x=await r.json();if(!r.ok)throw Error(x.error?.message||'Drive save failed');localStorage.setItem(DB+'.driveFile',x.id);msg('Google Drive saved')}catch(e){msg(e.message,'bad')}}
+async function driveLoad(){if(!token)return msg('Connect Google Drive first','warn');try{let id=localStorage.getItem(DB+'.driveFile');if(!id){let found=await findDriveProject();if(!found)return msg('No My Coding Studio project found in Google Drive','warn');id=found.id;localStorage.setItem(DB+'.driveFile',id)}let r=await fetch('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(id)+'?alt=media',{headers:{Authorization:'Bearer '+token}});if(r.status===404){localStorage.removeItem(DB+'.driveFile');let found=await findDriveProject();if(!found)throw Error('No My Coding Studio project found in Google Drive');id=found.id;localStorage.setItem(DB+'.driveFile',id);r=await fetch('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(id)+'?alt=media',{headers:{Authorization:'Bearer '+token}})}let x=await r.json();if(!r.ok)throw Error(x.error?.message||'Drive load failed');if(x.format!=='MyCodingStudioProjectV1'||!x.files||typeof x.files!=='object')throw Error('Invalid project file');files=x.files;persist();tabs={};current=null;$('editor').value='';refresh();msg('Google Drive project loaded')}catch(e){msg(e.message,'bad')}}
+async function diagnostics(){saveIfOpen();let checks=[['Local storage',(()=>{try{localStorage.setItem(DB+'.test','1');localStorage.removeItem(DB+'.test');return true}catch{return false}})()],['Workspace files',Object.keys(files).length>0],['Safe path guard',!Object.keys(files).some(x=>x.includes('..')||x.startsWith('/'))],['HTML preview',true],['JavaScript browser engine',(()=>{try{return new Function('return 6*7')()===42}catch{return false}})()],['Python browser runtime',typeof Worker!=='undefined'],['Google Drive configured',!!(localStorage.getItem(DB+'.gcid')||GOOGLE_CLIENT_ID)],['Google Drive authenticated',!!token],['Cloud runner configured',!!localStorage.getItem(DB+'.runner')]];modal('Diagnostics');$('results').textContent=checks.map(([n,v])=>`${v?'PASS ✓':'PENDING'}  ${n}`).join('\n')+'\n\nChecking cloud toolchains…';if(localStorage.getItem(DB+'.runner')){$('results').textContent+='\n'+(await runnerDiagnostics()).join('\n')}else $('results').textContent+='\nPENDING  Cloud toolchains'}
+
+let studioMode='code', previewVisible=true, termHistory=[], termHistoryIndex=0;
+function setMode(mode){studioMode=mode;document.body.dataset.mode=mode;$('codeMode').classList.toggle('activeMode',mode==='code');$('docsMode').classList.toggle('activeMode',mode==='documents');$('documentsPane').hidden=mode!=='documents';$('codePane').hidden=mode!=='code';msg(mode==='code'?'Code workspace':'Documents workspace');updateContext()}
+function updateContext(){let ext=(current||'').split('.').pop().toLowerCase();let android=Object.keys(files).some(x=>x==='settings.gradle' || x==='app/build.gradle');$('androidBuild').hidden=!android;$('ctx').textContent=studioMode==='documents'?'DOCUMENTS':(ext?ext.toUpperCase():'CODE')}
+function moreMenu(){modal('More Tools');$('controls').innerHTML='<button onclick="driveConnect()">Google Drive</button> <button onclick="driveSave()">Drive Save</button> <button onclick="driveLoad()">Drive Load</button> <button onclick="gitPanel()">Git</button> <button onclick="newAndroidApp()">New Android App</button> <button onclick="settings()">Settings</button> <button onclick="diagnostics()">Diagnostics</button>'}
+function systemView(){modal('System');let runner=localStorage.getItem(DB+'.runner')?'✓ Cloud runner configured':'⚠ Cloud runner not configured';let drive=token?'✓ Google Drive connected':'○ Google Drive not connected';$('results').textContent='Runtime: Browser + optional Cloud\n'+runner+'\n'+drive+'\nWorkspace files: '+Object.keys(files).length+'\nCurrent: '+(current||'none')}
+function togglePreview(){previewVisible=!previewVisible;$('previewPane').hidden=!previewVisible;$('viewerToggle').textContent=previewVisible?'Hide Viewer':'Show Viewer';if(previewVisible)updatePreview()}
+function updatePreview(){if(!$('previewFrame'))return;let html='';if(current?.endsWith('.html')) html=files[current]??$('editor').value;else if(current?.endsWith('.md')) html='<style>body{font-family:system-ui;padding:24px}</style><pre>'+esc(files[current]??$('editor').value)+'</pre>';else html='<style>body{font-family:system-ui;background:#0d1117;color:#8b949e;padding:24px}</style><h3>Live Viewer</h3><p>Open an HTML file for live preview.</p>';$('previewFrame').srcdoc=html}
+async function terminalTyped(){let i=$('termInput'),cmd=i.value.trim();if(!cmd)return;termHistory.push(cmd);termHistoryIndex=termHistory.length;i.value='';$('terminalLog').textContent+='\n$ '+cmd+'\n';if(cmd==='clear'){ $('terminalLog').textContent='';return }try{let x=await runnerRequest({action:'command',command:cmd,files});$('terminalLog').textContent+=(x.output||'(no output)')+'\n';msg('Terminal command finished')}catch(e){$('terminalLog').textContent+='ERROR: '+e.message+'\n';msg('Terminal command failed','bad')} $('terminalLog').scrollTop=$('terminalLog').scrollHeight}
+function toggleTerminal(){let p=$('terminalPanel');p.hidden=!p.hidden;if(!p.hidden)$('termInput').focus()}
+function voiceReady(){if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window))return msg('Voice is not supported in this browser','warn');let R=window.SpeechRecognition||window.webkitSpeechRecognition,r=new R();r.lang='en-IN';r.onstart=()=>msg('Listening…','warn');r.onresult=e=>{let t=e.results[0][0].transcript;$('editor').focus();let a=$('editor').selectionStart;$('editor').setRangeText(t,a,$('editor').selectionEnd,'end');$('editor').dispatchEvent(new Event('input'));msg('Voice text inserted')};r.onerror=()=>msg('Voice input failed','bad');r.start()}
+function docNew(type){let names={word:'Document.md',excel:'Workbook.csv',slides:'Slides.md',pdf:'PDF-notes.md',text:'Notes.txt',vba:'Module1.bas'};let n=names[type]||'Document.txt';if(files[n]!=null)n=Date.now()+'-'+n;files[n]='';persist();refresh();setMode('code');openFile(n);msg(type.toUpperCase()+' document created')}
+$('termInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();terminalTyped()}else if(e.key==='ArrowUp'){e.preventDefault();if(termHistory.length){termHistoryIndex=Math.max(0,termHistoryIndex-1);e.target.value=termHistory[termHistoryIndex]||''}}else if(e.key==='ArrowDown'){e.preventDefault();termHistoryIndex=Math.min(termHistory.length,termHistoryIndex+1);e.target.value=termHistory[termHistoryIndex]||''}});
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();runCurrent()}if((e.ctrlKey||e.metaKey)&&e.key==='`'){e.preventDefault();toggleTerminal()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='p'){e.preventDefault();quickOpen()}});
+$('editor').addEventListener('input',()=>{updatePreview()});
+const _openFile=openFile;openFile=function(p){_openFile(p);updateContext();updatePreview()};
+const _refresh=refresh;refresh=function(){_refresh();updateContext()};
+
+load();updateContext();updatePreview();
+
+function isMobileStudio(){
+  return window.matchMedia('(max-width:760px)').matches;
+}
+
+function mobileFiles(){
+  const e=document.querySelector('.explorer');
+  if(!e)return;
+  e.classList.toggle('mobileOpen');
+}
+
+function mobileCloseFiles(){
+  const e=document.querySelector('.explorer');
+  if(e)e.classList.remove('mobileOpen');
+}
+
+/* V6.1 override: viewer becomes on-demand full panel on phone */
+togglePreview=function(){
+  const p=$('previewPane');
+  if(isMobileStudio()){
+    p.classList.toggle('mobileOpen');
+    previewVisible=p.classList.contains('mobileOpen');
+  }else{
+    previewVisible=!previewVisible;
+    p.hidden=!previewVisible;
+  }
+  if($('viewerToggle'))
+    $('viewerToggle').textContent=previewVisible?'Hide Viewer':'Show Viewer';
+  if(previewVisible)updatePreview();
+};
+
+/* V6.1 override: terminal becomes bottom drawer on phone */
+toggleTerminal=function(){
+  const p=$('terminalPanel');
+  if(isMobileStudio()){
+    p.classList.toggle('mobileOpen');
+    p.hidden=false;
+    if(p.classList.contains('mobileOpen'))$('termInput').focus();
+  }else{
+    p.hidden=!p.hidden;
+    if(!p.hidden)$('termInput').focus();
+  }
+};
+
+function v61MobileInit(){
+  if(!isMobileStudio())return;
+
+  const terminal=$('terminalPanel');
+  terminal.hidden=false;
+  terminal.classList.remove('mobileOpen');
+
+  const preview=$('previewPane');
+  preview.hidden=false;
+  preview.classList.remove('mobileOpen');
+  previewVisible=false;
+
+  /* Add Files control without disturbing existing desktop tools */
+  const top=document.querySelector('.top');
+  if(top && !$('mobileFilesBtn')){
+    const b=document.createElement('button');
+    b.id='mobileFilesBtn';
+    b.className='tool';
+    b.textContent='Files';
+    b.onclick=mobileFiles;
+    const modes=top.querySelector('.modes');
+    if(modes) modes.after(b); else top.prepend(b);
+  }
+}
+
+/* Close Files after selecting a file on phone */
+const v61OpenFile=openFile;
+openFile=function(path){
+  v61OpenFile(path);
+  if(isMobileStudio())mobileCloseFiles();
+};
+
+window.addEventListener('resize',()=>{
+  if(!isMobileStudio()){
+    document.querySelector('.explorer')?.classList.remove('mobileOpen');
+    $('previewPane')?.classList.remove('mobileOpen');
+    $('terminalPanel')?.classList.remove('mobileOpen');
+  }
+});
+
+v61MobileInit();
+
+</script></body></html>

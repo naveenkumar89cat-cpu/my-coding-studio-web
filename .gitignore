@@ -1,0 +1,6 @@
+*.before-v61
+*.tar.gz
+.env
+.env.*
+node_modules/
+.DS_Store
